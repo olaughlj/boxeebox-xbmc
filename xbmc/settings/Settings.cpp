@@ -468,7 +468,7 @@ void CSettings::Uninitialize()
   m_settingsManager->UnregisterSettingsHandler(&CWakeOnAccess::Get());
   m_settingsManager->UnregisterSettingsHandler(&CRssManager::Get());
   m_settingsManager->UnregisterSettingsHandler(&g_application);
-#if defined(TARGET_LINUX) && !defined(TARGET_ANDROID) && !defined(TARGET_BOXEE)
+#if defined(TARGET_LINUX) && !defined(TARGET_ANDROID) && !defined(__UCLIBC__) && !defined(TARGET_BOXEE)
   m_settingsManager->UnregisterSettingsHandler(&g_timezone);
 #endif
 
@@ -722,12 +722,7 @@ bool CSettings::InitializeDefinitions()
 #endif
 #endif
 #endif
-  
-#if defined(TARGET_BOXEE)
-  if (CFile::Exists(SETTINGS_XML_FOLDER "boxeebox.xml") && !Initialize(SETTINGS_XML_FOLDER "boxeebox.xml"))
-    CLog::Log(LOGFATAL, "Unable to load boxeebox-specific settings definitions");
-#endif
-  
+
   // load any custom visibility and default values before loading the special
   // appliance.xml so that appliances are able to overwrite even those values
   InitializeVisibility();
@@ -932,9 +927,6 @@ void CSettings::InitializeConditions()
   m_settingsManager->AddCondition("has_dx");
   m_settingsManager->AddCondition("hasdxva2");
 #endif
-#ifdef HAS_INTEL_SMD
-  m_settingsManager->AddCondition("has_intel_smd");
-#endif
 
   if (g_application.IsStandAlone())
     m_settingsManager->AddCondition("isstandalone");
@@ -981,7 +973,7 @@ void CSettings::InitializeISettingsHandlers()
   m_settingsManager->RegisterSettingsHandler(&CWakeOnAccess::Get());
   m_settingsManager->RegisterSettingsHandler(&CRssManager::Get());
   m_settingsManager->RegisterSettingsHandler(&g_application);
-#if defined(TARGET_LINUX) && !defined(TARGET_ANDROID) && !defined(TARGET_BOXEE)
+#if defined(TARGET_LINUX) && !defined(TARGET_ANDROID) && !defined(__UCLIBC__) && !defined(TARGET_BOXEE)
   m_settingsManager->RegisterSettingsHandler(&g_timezone);
 #endif
 }
