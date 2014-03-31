@@ -11495,14 +11495,6 @@ msgctxt "#36200"
 msgid "Default scraper used for adding music videos to your library."
 msgstr "用于给资料库加入音乐电视的默认刮削器。"
 
-msgctxt "#36201"
-msgid "Category for general settings for PVR/Live TV features."
-msgstr "PVR/直播电视功能常用设置功能区。"
-
-msgctxt "#36202"
-msgid "No info available yet."
-msgstr "无可用信息。"
-
 msgctxt "#36204"
 msgid "Import channel groups from the PVR backend (if supported). Will delete user created groups if they're not found on the backend."
 msgstr "从PVR后端（如果支持）导入频道组。这将删除用户创建但后端中没有的组。"
@@ -12525,7 +12517,7 @@ msgstr "改变用户界面的立体 3D 模式。"
 
 msgctxt "#36540"
 msgid "The preferred stereoscopic 3D mode."
-msgstr "首先立体 3D 模式。"
+msgstr "首选立体 3D 模式。"
 
 msgctxt "#36541"
 msgid "Allows volume control from AirPlay clients."
