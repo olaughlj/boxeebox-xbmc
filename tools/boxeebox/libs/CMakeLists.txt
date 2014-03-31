@@ -21,6 +21,15 @@ string(REPLACE "\n" "" HOSTMACHINE ${HOSTMACHINE})
 include(ExternalProject)
 
 ExternalProject_Add(
+    giflib
+    URL                   http://sourceforge.net/projects/giflib/files/giflib-5.x/giflib-5.0.5.tar.gz/download
+	URL_MD5               7c1c9434ce892d57a78c63cf15bbfbcc
+    CONFIGURE_COMMAND     ${BASIC_CONF}
+    BUILD_COMMAND         make
+    INSTALL_COMMAND       make install
+)
+
+ExternalProject_Add(
     libxml2
     URL                   http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz
 	URL_MD5               9c0cfef285d5c4a5c80d00904ddab380
@@ -92,12 +101,12 @@ ExternalProject_Add(
 )
 
 ExternalProject_Add(
-	enca
-	URL					https://github.com/nijel/enca/archive/1.15.tar.gz
+	libenca
+	URL				https://github.com/nijel/enca/archive/1.15.tar.gz
 	URL_MD5				c976da70571bea8a0ad83e150fcfa8d5
 	CONFIGURE_COMMAND   ${BASIC_CONF}
 	BUILD_COMMAND       make
-    BUILD_IN_SOURCE     1
+	BUILD_IN_SOURCE     1
 )
 
 ExternalProject_Add(
@@ -391,7 +400,7 @@ ExternalProject_Add(
 	URL 				http://libass.googlecode.com/files/libass-0.10.2.tar.gz
 	URL_MD5 			167b784dacded3a65224925c610084cc
 	CONFIGURE_COMMAND 	${BASIC_CONF}
-	DEPENDS libpng
+	DEPENDS libpng libenca
 )
 # TODO:Fails due to libSDL
 ExternalProject_Add(
